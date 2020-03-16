@@ -1,10 +1,11 @@
 import React from 'react';
 
 const Todo = props => {
-  const { item, tag, completed } = props.data;
+  const { item, tag } = props.data;
+  const { handleToggleCompleted } = props;
 
   return (
-    <div>
+    <div onClick={() => handleToggleCompleted()}>
       <span>{item}</span>
       {/* <span /> */}
     </div>

@@ -11,17 +11,22 @@ const TodoList = () => {
     dispatch(payload);
   };
 
-  // const handleToggleCompleted = todoIndex => {
+  const handleClear = event => {
+    // event.preventDefault();
+    dispatch({type: 'CLEAR_COMPLETED'});
+  };
 
-  // };
+  const handleToggleCompleted = todoIndex => {
+    dispatch({type: 'TOGGLE_COMPLETED', index: todoIndex});
+  };
 
   return (
     <div>
       <h1>TODO LIST:</h1>
-      {state.map(data => {
-        return <Todo data={data} key={data.id} />
+      {state.map((data, index) => {
+        return <Todo data={data} key={data.id} handleToggleCompleted={() => handleToggleCompleted(index)}/>
       })}
-      <AddTodo handleSubmit={handleSubmit} />
+      <AddTodo handleSubmit={handleSubmit} handleClear={handleClear} />
     </div>
   );
 }

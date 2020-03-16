@@ -20,6 +20,15 @@ export const todoReducer = (state, action) => {
           id: id,
         },
       ];
+    case 'TOGGLE_COMPLETED':
+      const newState = [...state];
+      newState[action.index] = {
+        ...newState[action.index],
+        completed: !newState[action.index].completed,
+      };
+      return newState;
+    case 'CLEAR_COMPLETED':
+      return state.filter(item => !item.completed);
     default:
       return state;
   }
